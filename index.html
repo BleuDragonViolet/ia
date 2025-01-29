@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Site</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            overflow: hidden;
+        }
+        header {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .container {
+            margin-top: 80px;
+            text-align: center;
+            padding: 20px;
+        }
+        .container h1 {
+            color: #007BFF;
+        }
+        .container p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .falling-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+        }
+        .line {
+            position: absolute;
+            width: 2px;
+            height: 50px;
+            background: #007BFF;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            from {
+                transform: translateY(-100vh);
+            }
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="ia.html">Avantages ?</a>
+            <a href="chatgpt.html">Chatgpt</a>
+            <a href="apropos.html">À propos</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Bienvenue sur le site de l'Intelligence Artificielle</h1>
+        <p>Ce site est dédié à l'exploration du monde fascinant de l'intelligence artificielle. Vous y trouverez des actualités sur les dernières avancées, des présentations de projets innovants et des explications sur les concepts clés de l'IA.</p>
+        <p>Nous vous invitons à explorer les différentes sections pour en apprendre davantage sur cette technologie qui façonne notre avenir.</p>
+    </div>
+    <div class="falling-lines" id="falling-lines"></div>
+    <script>
+        function createFallingLines() {
+            const container = document.getElementById('falling-lines');
+            for (let i = 0; i < 30; i++) {
+                let line = document.createElement('div');
+                line.classList.add('line');
+                line.style.left = Math.random() * 100 + 'vw';
+                line.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                container.appendChild(line);
+            }
+        }
+        createFallingLines();
+    </script>
+</body>
+</html>

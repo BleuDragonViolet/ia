@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA Site - Opportunités et Risques</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: white;
+            overflow: hidden;
+        }
+        header {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .container {
+            margin-top: 80px;
+            text-align: center;
+            padding: 20px;
+        }
+        .container h1 {
+            color: #007BFF;
+        }
+        .container p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .falling-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+        }
+        .line {
+            position: absolute;
+            width: 2px;
+            height: 50px;
+            background: #007BFF;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            from {
+                transform: translateY(-100vh);
+            }
+            to {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="ia.html">Avantages ?</a>
+            <a href="chatgpt.html">Chatgpt</a>
+            <a href="apropos.html">À propos</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Intelligence Artificielle : Opportunités et Risques</h1>
+        <p>L'intelligence artificielle (IA) révolutionne de nombreux domaines, de la santé à l'industrie en passant par l'éducation. Des outils comme ChatGPT permettent de faciliter la communication et l'automatisation de tâches complexes.</p>
+        <h2>Les avantages de l'IA</h2>
+        <p>L'IA améliore l'efficacité, permet des analyses rapides et précises, et ouvre de nouvelles perspectives dans l'innovation technologique. Les assistants virtuels, comme ChatGPT, aident à la rédaction, à la traduction et à la recherche d'informations.</p>
+        <h2>Les risques et défis</h2>
+        <p>Malgré ses avantages, l'IA pose des défis éthiques et de sécurité : désinformation, biais algorithmiques et menaces pour certains emplois. Il est crucial d'encadrer son développement pour éviter des dérives.</p>
+        <p>Ce site explore ces opportunités et risques afin de mieux comprendre l'impact de l'IA sur notre quotidien.</p>
+    </div>
+    <div class="falling-lines" id="falling-lines"></div>
+    <script>
+        function createFallingLines() {
+            const container = document.getElementById('falling-lines');
+            for (let i = 0; i < 30; i++) {
+                let line = document.createElement('div');
+                line.classList.add('line');
+                line.style.left = Math.random() * 100 + 'vw';
+                line.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                container.appendChild(line);
+            }
+        }
+        createFallingLines();
+    </script>
+</body>
+</html>

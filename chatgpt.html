@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos de ChatGPT</title>
+    <style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+    overflow: hidden;
+}
+header {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #007BFF;
+    font-size: 18px;
+    font-weight: bold;
+}
+.container {
+    margin-top: 80px;
+    text-align: center;
+    padding: 20px;
+}
+.container h1 {
+    color: #007BFF;
+}
+.container p {
+    font-size: 18px;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+.game-container {
+    margin-top: 20px;
+}
+.game-container input {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+.game-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.falling-lines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    pointer-events: none;
+}
+.line {
+    position: absolute;
+    width: 2px;
+    height: 50px;
+    background: #007BFF;
+    opacity: 0.7;
+    animation: fall linear infinite;
+}
+@keyframes fall {
+    from {
+        transform: translateY(-100vh);
+    }
+    to {
+        transform: translateY(100vh);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html">Accueil</a>
+            <a href="ia.html">Avantages ?</a>
+            <a href="chatgpt.html">Chatgpt</a>
+            <a href="apropos.html">À propos</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>Découvrez ChatGPT</h1>
+        <p>ChatGPT est une intelligence artificielle révolutionnaire créée par OpenAI. Il est capable de comprendre et générer du texte avec une précision impressionnante, facilitant l'accès à l'information et la communication.</p>
+        <h2>Les pouvoirs de ChatGPT</h2>
+        <ul style="text-align: left; max-width: 600px; margin: auto;">
+            <li>Répondre à des questions complexes instantanément</li>
+            <li>Aider à la rédaction d'articles, emails et rapports</li>
+            <li>Traduire des textes en plusieurs langues</li>
+            <li>Fournir des analyses et synthèses d’informations</li>
+            <li>Simuler des conversations naturelles</li>
+        </ul>
+        <h2>Essayez un mini-jeu !</h2>
+        <p>Entrez un nombre entre 1 et 10 et voyez si ChatGPT peut le deviner !</p>
+        <div class="game-container">
+            <input type="number" id="userNumber" min="1" max="10" placeholder="Votre nombre">
+            <button onclick="playGame()">Jouer</button>
+        </div>
+        <p id="gameResult"></p>
+    </div>
+    <div class="falling-lines" id="falling-lines"></div>
+    <script>
+        function createFallingLines() {
+            const container = document.getElementById('falling-lines');
+            for (let i = 0; i < 30; i++) {
+                let line = document.createElement('div');
+                line.classList.add('line');
+                line.style.left = Math.random() * 100 + 'vw';
+                line.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                container.appendChild(line);
+            }
+        }
+        createFallingLines();
+
+        function playGame() {
+            let userNumber = document.getElementById("userNumber").value;
+            let aiGuess = Math.floor(Math.random() * 10) + 1;
+            let message = (userNumber == aiGuess) ? "Incroyable ! ChatGPT a deviné votre nombre : " + aiGuess : "ChatGPT a choisi " + aiGuess + ", essayez encore !";
+            document.getElementById("gameResult").innerText = message;
+        }
+    </script>
+</body>
+</html>

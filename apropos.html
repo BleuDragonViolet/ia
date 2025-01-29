@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: white;
+        }
+
+        header {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #007BFF;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+        }
+
+        .game-container {
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #007BFF;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        input {
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<header>
+    <nav>
+        <a href="index.html">Accueil</a>
+        <a href="ia.html">Avantages ?</a>
+        <a href="chatgpt.html">Chatgpt</a>
+        <a href="apropos.html">À propos</a>
+    </nav>
+</header>
+
+<body>
+    <div class="container">
+        <h1>À Propos de Moi</h1>
+        <p>📧 Email : monadresse@email.com</p>
+        <p>📞 Téléphone : 06 12 34 56 78</p>
+
+        <h2>Mini-Jeux</h2>
+
+        <div class="game-container">
+            <h3>🎯 Devine le Nombre</h3>
+            <p>Choisissez un nombre entre 1 et 10 :</p>
+            <input type="number" id="userNumber" min="1" max="10">
+            <button onclick="guessNumber()">Vérifier</button>
+            <p id="guessResult"></p>
+        </div>
+
+        <div class="game-container">
+            <h3>🃏 Pierre-Papier-Ciseaux</h3>
+            <button onclick="playGame('pierre')">Pierre</button>
+            <button onclick="playGame('papier')">Papier</button>
+            <button onclick="playGame('ciseaux')">Ciseaux</button>
+            <p id="rpcResult"></p>
+        </div>
+
+        <div class="game-container">
+            <h3>🔢 Calcul Mental</h3>
+            <p>Résolvez : <span id="mathQuestion"></span></p>
+            <input type="number" id="mathAnswer">
+            <button onclick="checkMath()">Vérifier</button>
+            <p id="mathResult"></p>
+        </div>
+    </div>
+
+    <script>
+        function guessNumber() {
+            let userNumber = document.getElementById("userNumber").value;
+            let randomNumber = Math.floor(Math.random() * 10) + 1;
+            document.getElementById("guessResult").innerText = userNumber == randomNumber ? "Bravo ! C'était bien " + randomNumber : "Raté ! C'était " + randomNumber;
+        }
+
+        function playGame(userChoice) {
+            const choices = ["pierre", "papier", "ciseaux"];
+            let aiChoice = choices[Math.floor(Math.random() * 3)];
+            let result = "";
+            if (userChoice === aiChoice) result = "Égalité !";
+            else if ((userChoice === "pierre" && aiChoice === "ciseaux") ||
+                (userChoice === "papier" && aiChoice === "pierre") ||
+                (userChoice === "ciseaux" && aiChoice === "papier")) {
+                result = "Gagné ! L'IA avait choisi " + aiChoice;
+            } else {
+                result = "Perdu ! L'IA avait choisi " + aiChoice;
+            }
+            document.getElementById("rpcResult").innerText = result;
+        }
+
+        function generateMathQuestion() {
+            let a = Math.floor(Math.random() * 10) + 1;
+            let b = Math.floor(Math.random() * 10) + 1;
+            document.getElementById("mathQuestion").innerText = `${a} + ${b}`;
+            document.getElementById("mathAnswer").dataset.solution = a + b;
+        }
+
+        function checkMath() {
+            let answer = document.getElementById("mathAnswer").value;
+            let solution = document.getElementById("mathAnswer").dataset.solution;
+            document.getElementById("mathResult").innerText = (answer == solution) ? "Correct !" : "Faux, la réponse était " + solution;
+        }
+
+        generateMathQuestion();
+    </script>
+</body>
+
+</html>
